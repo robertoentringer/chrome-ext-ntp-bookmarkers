@@ -1,6 +1,6 @@
 import Sortable from "@shopify/draggable/lib/sortable"
 
-const init = () => chrome.bookmarks.getSubTree("1", subTree => {
+const init = chrome.bookmarks.getSubTree("1", subTree => {
   const size = 24
   const ntp = document.getElementById("ntp")
 
@@ -43,5 +43,3 @@ const init = () => chrome.bookmarks.getSubTree("1", subTree => {
 })
 
 document.addEventListener("DOMContentLoaded", init)
-
-//chrome.topSites.get(urls => console.log(urls))
