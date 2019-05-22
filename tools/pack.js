@@ -2,11 +2,11 @@ const fs = require("fs")
 const path = require("path")
 const archiver = require("archiver")
 
-const folderSrc = path.join(__dirname, "src")
-const folderDist = path.join(__dirname, "dist")
+const folderSrc = path.join(__dirname, "../src")
+const folderDist = path.join(__dirname, "../pack")
 
 const zip = (src, dist, zipFilename) => {
-  console.info(`Zipping... ${zipFilename}`)
+  console.info(`\nZipping... ${zipFilename}`)
   const archive = archiver("zip", { zlib: { level: 9 } })
   const stream = fs.createWriteStream(path.join(dist, zipFilename))
   return new Promise((resolve, reject) => {
@@ -19,7 +19,7 @@ const zip = (src, dist, zipFilename) => {
   })
 }
 
-const { name, version } = require(path.join(__dirname, "./package.json"))
+const { name, version } = require(path.join(__dirname, "../package.json"))
 const zipFilename = `${name}-v${version}.zip`
 
 if (!fs.existsSync(folderDist)) fs.mkdirSync(folderDist)
