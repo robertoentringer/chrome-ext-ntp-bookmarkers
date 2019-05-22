@@ -15,6 +15,7 @@ body {
   align-items: center;
   max-width: 960px;
   margin: 0 auto;
+  outline: none;
 }
 
 .text {
@@ -22,7 +23,7 @@ body {
   display: block;
   white-space: nowrap;
   text-overflow: ellipsis;
-  margin-bottom: 0.5rem
+  margin-bottom: 0.5rem;
 }
 
 .icon {
@@ -39,7 +40,18 @@ body {
 .item {
   width: 100px;
   margin: 1rem;
+  outline: none;
+  text-shadow: 2px 2px 2px rgb(40, 40, 40);
+  cursor: pointer;
 }
 
-.draggable-mirror {background-color: #00000050}
-.draggable-source--is-dragging {visibility: hidden}
+.item:hover .icon {
+  background-color: #fff;
+}
+
+.draggable-mirror {
+  background-color: #00000050;
+}
+.draggable-source--is-dragging {
+  visibility: hidden;
+}
