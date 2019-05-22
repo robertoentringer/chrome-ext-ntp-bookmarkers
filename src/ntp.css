@@ -42,11 +42,17 @@ body {
   margin: 1rem;
   outline: none;
   text-shadow: 2px 2px 2px rgb(40, 40, 40);
+}
+.item:hover {
   cursor: pointer;
 }
 
 .item:hover .icon {
   background-color: #fff;
+}
+
+.draggable--is-dragging {
+  cursor: move;
 }
 
 .draggable-mirror {
