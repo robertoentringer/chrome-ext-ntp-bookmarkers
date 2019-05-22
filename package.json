@@ -1,10 +1,13 @@
 {
   "name": "chrome-ext-ntp-bookmarkers",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Chrome extension new tab bookmarkers",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js"
+    "prebuild": "rm -fr dist && mkdir dist && cp -R src/{icons,manifest.json} dist",
+    "build": "parcel build src/ntp.html src/background.js --no-cache --no-source-maps --out-dir dist/",
+    "dev": "npm run prebuild && parcel watch src/ntp.html src/background.js --hmr-hostname localhost --hmr-port 8081 --no-cache --no-source-maps --out-dir dist/",
+    "pack": "npm run build && node tools/pack.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,10 @@
   },
   "homepage": "https://github.com/robertoentringer/chrome-ext-ntp-bookmarkers#readme",
   "devDependencies": {
-    "archiver": "^3.0.0"
+    "archiver": "^3.0.0",
+    "parcel-bundler": "^1.12.3"
+  },
+  "dependencies": {
+    "@shopify/draggable": "^1.0.0-beta.8"
   }
 }
