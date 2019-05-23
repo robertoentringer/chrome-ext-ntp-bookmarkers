@@ -1,9 +1,9 @@
-import Sortable from "@shopify/draggable/lib/sortable"
+import Sortable from "sortablejs"
 
-const init = chrome.bookmarks.getSubTree("1", subTree => {
+const ntp = document.getElementById("ntp")
+
+const dumpBookmarkers = subTree => {
   const size = 24
-  const ntp = document.getElementById("ntp")
-
   for (const item of subTree[0].children) {
     const url = `chrome://favicon/size/${size}@1x/${item.url}`
 
@@ -24,22 +24,35 @@ const init = chrome.bookmarks.getSubTree("1", subTree => {
     const el = document.createElement("div")
     el.className = "item"
     el.dataset.id = item.id
+    el.addEventListener("mouseenter", e => {
+      if (!ntp.classList.contains("is-dragging")) e.target.classList.add("hover")
+    })
+    el.addEventListener("mouseleave", e => e.target.classList.remove("hover"))
 
     el.appendChild(icon)
     el.appendChild(text)
-
     el.addEventListener("click", () => chrome.tabs.update({ url: item.url }))
 
     ntp.appendChild(el)
+    sortable.option("disabled", false)
   }
+}
 
-  const sortable = new Sortable(ntp, { draggable: ".item" })
-
-  sortable.on("sortable:stop", sort => {
-    const items = sortable.getDraggableElementsForContainer(ntp)
-    for (let i = 0, size = items.length; i < size; i++)
-      chrome.bookmarks.move(items[i].dataset.id, { index: i })
-  })
+const sortable = new Sortable(ntp, {
+  animation: 150,
+  disabled: true,
+  onStart(e) {
+    e.to.classList.add("is-dragging")
+  },
+  onEnd(e) {
+    e.to.classList.remove("is-dragging")
+    saveOrder(e.to.children)
+  },
 })
 
-document.addEventListener("DOMContentLoaded", init)
+const saveOrder = items => {
+  for (let i = 0, size = items.length; i < size; i++)
+    chrome.bookmarks.move(items[i].dataset.id, { index: i })
+}
+
+document.addEventListener("DOMContentLoaded", chrome.bookmarks.getSubTree("1", dumpBookmarkers))
