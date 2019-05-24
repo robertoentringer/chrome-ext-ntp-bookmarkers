@@ -8,7 +8,7 @@ module.exports = {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly"
   },
-  plugins: ["prettier"],
+  plugins: ["prettier", "html"],
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module"
