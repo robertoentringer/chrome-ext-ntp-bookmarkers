@@ -57,10 +57,12 @@ body {
 }
 
 .showInfo .moveHandler {
+  z-index: 1;
   opacity: 1;
 }
 
 .moveHandler {
+  z-index: -1;
   cursor: move;
   opacity: 0;
   position: absolute;
