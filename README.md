@@ -7,4 +7,9 @@ This extension shows the bookmarks overview when opening a new tab in Chrome.
 Add to Chrome : [chrome web store
 ](https://chrome.google.com/webstore/detail/new-tab-page-bookmarks/jafnapncbaamdiooljaibpebonjpgffe)
 
+
+🚀 New !!! Version 0.2 support dragging and dropping to change the order :
+
+https://www.youtube.com/watch?v=gda9ufFVqYo
+
 [![screenshot.png](screenshot.png?raw=true)](https://chrome.google.com/webstore/detail/new-tab-page-bookmarks/jafnapncbaamdiooljaibpebonjpgffe)
