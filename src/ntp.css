@@ -24,7 +24,7 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
   margin-bottom: 0.5rem;
-  padding: 0 0.5rem
+  padding: 0 0.5rem;
 }
 
 .icon {
@@ -40,7 +40,7 @@ body {
   padding: 1rem;
 }
 
-.item {
+.item, .edit {
   text-decoration: none;
   color: #fff;
   position: relative;
@@ -51,12 +51,12 @@ body {
   transition: ease-in-out 0.25s background-color;
 }
 
-.item.hover .icon {
+.hover .icon, .edit:hover .icon {
   cursor: pointer;
   background-color: #fff;
 }
 
-.item.showInfo .moveHandler {
+.showInfo .moveHandler {
   opacity: 1;
 }
 

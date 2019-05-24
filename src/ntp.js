@@ -1,69 +1,91 @@
 import Sortable from "sortablejs"
 
-const ntp = document.getElementById("ntp")
-
 const dumpBookmarkers = subTree => {
-  const iconSize = 24
-
-  for (const bookmark of subTree[0].children) {
-    const img = new Image()
-    img.src = `chrome://favicon/size/${iconSize}@1x/${bookmark.url}`
-    img.height = iconSize
-    img.width = iconSize
-    img.alt = bookmark.title
-    img.draggable = false
-
-    const icon = document.createElement("div")
-    icon.appendChild(img)
-    icon.className = "icon"
-
-    const text = document.createElement("div")
-    text.textContent = bookmark.title
-    text.className = "text"
-
-    const moveHandler = document.createElement("div")
-    moveHandler.className = "moveHandler"
-    moveHandler.innerHTML = "&vellip;"
-
-    const el = document.createElement("a")
-    el.className = "item"
-    el.href = bookmark.url
-    el.dataset.id = bookmark.id
-    el.appendChild(icon)
-    el.appendChild(text)
-    el.appendChild(moveHandler)
-
-    eventHandlers(el)
-
-    ntp.appendChild(el)
-    sortable(ntp)
-  }
+  const ntp = document.getElementById("ntp")
+  for (const bookmark of subTree[0].children) ntp.appendChild(createItem(bookmark))
+  ntp.appendChild(createItemEdit())
+  sortable(ntp)
 }
 
-const eventHandlers = el => {
+const createIcon = (src, title, size = "24") => {
+  const img = new Image()
+  img.src = `chrome://favicon/size/${size}@1x/${src}`
+  img.height = size
+  img.width = size
+  img.alt = title
+  img.draggable = false
+  const icon = document.createElement("div")
+  icon.appendChild(img)
+  icon.className = "icon"
+  return icon
+}
+
+const createText = title => {
+  const text = document.createElement("div")
+  text.textContent = title
+  text.className = "text"
+  return text
+}
+
+const createMoveHandler = () => {
+  const handler = document.createElement("div")
+  handler.className = "moveHandler"
+  handler.innerHTML = "&vellip;"
+  return handler
+}
+
+const createItemEdit = () => {
+  const icon = createIcon(chrome.extension.getURL("icons/icon48.png"))
+  const text = createText("Edit")
+  const item = document.createElement("a")
+  item.className = "edit"
+  item.href = "chrome://bookmarks/"
+  item.appendChild(icon)
+  item.appendChild(text)
+  clickEvent(item)
+  return item
+}
+
+const createItem = bookmark => {
+  const icon = createIcon(bookmark.url, bookmark.title)
+  const text = createText(bookmark.title)
+  const moveHandler = createMoveHandler()
+  const item = document.createElement("a")
+  item.className = "item"
+  item.href = bookmark.url
+  item.dataset.id = bookmark.id
+  item.appendChild(icon)
+  item.appendChild(text)
+  item.appendChild(moveHandler)
+  hoverEvents(item)
+  clickEvent(item)
+  return item
+}
+const hoverEvents = el => {
   let showInfo
-
-  el.addEventListener("click", e => {
-    e.preventDefault()
-    e.target.classList.remove("hover", "showInfo")
-    chrome.tabs.update({ url: el.href })
-  })
-
   el.addEventListener("mouseenter", e => {
-    if (!ntp.classList.contains("is-dragging")) {
+    if (!el.parentNode.classList.contains("is-dragging")) {
       e.target.classList.add("hover")
       showInfo = setTimeout(() => e.target.classList.add("showInfo"), 1000)
     }
   })
-
   el.addEventListener("mouseleave", e => {
     clearTimeout(showInfo)
     e.target.classList.remove("hover", "showInfo")
   })
 }
 
+const clickEvent = el => {
+  el.addEventListener("click", e => {
+    e.preventDefault()
+    e.target.classList.remove("hover", "showInfo")
+    chrome.tabs.update({ url: el.href })
+  })
+}
+
 const sortable = ntp =>
   new Sortable(ntp, {
+    filter: ".fix",
     handle: ".moveHandler",
     animation: 150,
     onStart(e) {
@@ -71,7 +93,7 @@ const sortable = ntp =>
     },
     onEnd(e) {
       e.to.classList.remove("is-dragging")
-      saveOrder(e.to.children)
+      saveOrder(e.to.querySelectorAll(".item"))
     }
   })
 
