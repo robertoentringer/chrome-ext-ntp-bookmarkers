@@ -1,3 +1,6 @@
+/*eslint no-console: ["error", { allow: ["err", "info"] }] */
+/*global __dirname*/
+
 const fs = require("fs")
 const path = require("path")
 const archiver = require("archiver")
@@ -6,7 +9,7 @@ const folderSrc = path.join(__dirname, "../dist")
 const folderDist = path.join(__dirname, "../pack")
 
 const zip = (src, dist, zipFilename) => {
-  console.info(`\nZipping... ${zipFilename}`)
+  console.info(`\nZipping dist folder... ${zipFilename}`)
   const archive = archiver("zip", { zlib: { level: 9 } })
   const stream = fs.createWriteStream(path.join(dist, zipFilename))
   return new Promise((resolve, reject) => {
