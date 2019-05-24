@@ -36,12 +36,11 @@ const createMoveHandler = () => {
 
 const createItemEdit = () => {
   const icon = createIcon(chrome.extension.getURL("icons/icon48.png"))
-  const text = createText("Edit")
   const item = document.createElement("a")
   item.className = "edit"
-  item.href = "chrome://bookmarks/"
+  item.href = "chrome://bookmarks"
+  item.title = "Edit"
   item.appendChild(icon)
-  item.appendChild(text)
   clickEvent(item)
   return item
 }
