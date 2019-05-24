@@ -4,8 +4,8 @@
   "description": "Chrome extension new tab bookmarkers",
   "main": "main.js",
   "scripts": {
-    "lint": "eslint src --fix",
-    "prebuild": "rm -fr dist && mkdir dist && cp -R src/{icons,manifest.json} dist",
+    "lint": "eslint src tools --fix",
+    "prebuild": "npm run lint && rm -fr dist && mkdir dist && cp -R src/{icons,manifest.json} dist",
     "build": "parcel build src/ntp.html src/background.js --no-cache --no-source-maps --out-dir dist/",
     "dev": "npm run prebuild && parcel watch src/ntp.html src/background.js --hmr-hostname localhost --hmr-port 8081 --no-cache --no-source-maps --out-dir dist/",
     "pack": "npm run build && node tools/pack.js"
