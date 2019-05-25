@@ -1,4 +1,4 @@
-/*eslint no-console: ["error", { allow: ["err", "info"] }] */
+/*eslint no-console: ["error", { allow: ["error", "info"] }] */
 /*global __dirname*/
 
 const fs = require("fs")
@@ -29,4 +29,4 @@ if (!fs.existsSync(folderDist)) fs.mkdirSync(folderDist)
 
 zip(folderSrc, folderDist, zipFilename)
   .then(() => console.info("Zip ok!", "\n"))
-  .catch(console.err)
+  .catch(err => console.error(err))
