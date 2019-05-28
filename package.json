@@ -1,6 +1,5 @@
 {
   "name": "chrome-ext-ntp-bookmarkers",
-  "version": "0.0.2",
   "description": "Chrome extension new tab bookmarkers",
   "main": "main.js",
   "scripts": {
