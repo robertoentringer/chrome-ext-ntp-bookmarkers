@@ -22,8 +22,8 @@ const zip = (src, dist, zipFilename) => {
   })
 }
 
-const { name, version } = require(path.join(__dirname, "../package.json"))
-const zipFilename = `${name}-v${version}.zip`
+const { name, version } = require(path.join(__dirname, "../src/manifest.json"))
+const zipFilename = `${name} v${version}.zip`
 
 if (!fs.existsSync(folderDist)) fs.mkdirSync(folderDist)
 
