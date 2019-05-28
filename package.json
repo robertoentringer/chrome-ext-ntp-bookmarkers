@@ -1,7 +1,6 @@
 {
   "name": "chrome-ext-ntp-bookmarkers",
   "description": "Chrome extension new tab bookmarkers",
-  "main": "main.js",
   "scripts": {
     "lint": "eslint src tools --fix",
     "prebuild": "npm run lint && rm -fr dist && mkdir dist && cp -R src/{icons,manifest.json} dist",
