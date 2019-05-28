@@ -1,7 +1,7 @@
 {
   "name": "New tab page bookmarks",
   "description": "Override the new tab page with the bookmarks.",
-  "version": "0.2",
+  "version": "0.3",
   "incognito": "split",
   "chrome_url_overrides": {
     "newtab": "ntp.html"
