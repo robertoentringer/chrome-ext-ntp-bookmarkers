@@ -12,4 +12,4 @@ Add to Chrome : [chrome web store
 
 https://www.youtube.com/watch?v=gda9ufFVqYo
 
-[![screenshot.png](screenshot.png?raw=true)](https://chrome.google.com/webstore/detail/new-tab-page-bookmarks/jafnapncbaamdiooljaibpebonjpgffe)
+[![screenshot.png](screenshot.png)](https://chrome.google.com/webstore/detail/new-tab-page-bookmarks/jafnapncbaamdiooljaibpebonjpgffe)
