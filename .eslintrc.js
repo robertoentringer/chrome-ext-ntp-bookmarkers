@@ -4,21 +4,18 @@ module.exports = {
     browser: true,
     es6: true
   },
-  extends: ["eslint:recommended", "plugin:prettier/recommended"],
+  extends: ['eslint:recommended', 'plugin:prettier/recommended'],
   globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly"
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+    chrome: 'readonly'
   },
-  plugins: ["prettier", "html"],
+  plugins: ['prettier', 'html'],
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: "module"
+    sourceType: 'module'
   },
   rules: {
-    "prettier/prettier": ["error", { semi: false, printWidth: 100 }],
-    "comma-dangle": ["error", "never"]
-  },
-  globals: {
-    chrome: "readonly"
+    'comma-dangle': ['error', 'never']
   }
 }
