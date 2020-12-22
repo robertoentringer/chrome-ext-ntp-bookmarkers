@@ -4,10 +4,7 @@
   "main": "./src/background.js",
   "scripts": {
     "lint": "eslint src  --fix",
-    "prebuild": "npm run lint && rm -fr dist && mkdir dist && cp -R src/{icons,manifest.json} dist",
-    "build": "parcel build src/ntp.html src/background.js --no-cache --no-source-maps --out-dir dist/",
-    "dev": "npm run prebuild && parcel watch src/ntp.html src/background.js --hmr-hostname localhost --hmr-port 8081 --no-cache --no-source-maps --out-dir dist/",
-    "pack": "npm run build && zipack src/manifest.json"
+    "pack": "zipack src/manifest.json"
   },
   "repository": {
     "type": "git",
@@ -26,16 +23,15 @@
   },
   "homepage": "https://github.com/robertoentringer/chrome-ext-ntp-bookmarkers#readme",
   "devDependencies": {
-    "archiver": "^4.0.2",
-    "eslint": "^7.4.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-html": "^6.0.2",
-    "eslint-plugin-prettier": "^3.1.4",
-    "parcel-bundler": "^1.12.4",
-    "prettier": "^2.0.5",
-    "zipack": "0.0.9"
+    "archiver": "^5.1.0",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-html": "^6.1.1",
+    "eslint-plugin-prettier": "^3.3.0",
+    "prettier": "^2.2.1",
+    "zipack": "1.0.2"
   },
   "dependencies": {
-    "sortablejs": "^1.10.2"
+    "sortablejs": "^1.12.0"
   }
 }
